@@ -1,0 +1,34 @@
+
+{{ form_start(form, {'attr' : {
+    'enctype' : 'multipart/form-data'
+}}) }}
+    <div>
+        <label for="">Titre</label>
+        {{ form_widget(form.titre) }}
+    </div>
+    <div>
+        <label for="">Contenu</label>
+        {{ form_widget(form.contenu) }}
+    </div>
+    <div>
+        <label for="">User</label>
+        {{ form_widget(form.user) }}
+    </div>
+    <div>
+        <label for="">Image</label>
+        {# <input type="file" name="image" accept="image/png, image/jpeg, image/jpg"> #}
+        {{ form_widget(form.image) }}
+    </div>
+     <div>
+        <label for="">fichier</label>
+        {# <input type="file" name="fichier" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,
+        text/plain, application/pdf, image/*"> #}
+         {{ form_widget(form.fichier) }}
+    </div>
+    <div>
+        <label for="">Video</label>
+        {# <input type="file" name="video" accept="video/mp4"> #}
+         {{ form_widget(form.video) }}
+    </div>
+    <button class="btn" id="button_article">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}
