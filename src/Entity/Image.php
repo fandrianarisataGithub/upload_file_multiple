@@ -8,7 +8,7 @@ use App\Repository\ImageRepository;
 /**
  * @ORM\Entity(repositoryClass=ImageRepository::class)
  */
-class Image
+class Image implements \Serializable
 {
     /**
      * @ORM\Id
@@ -23,12 +23,12 @@ class Image
     private $url;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Article::class, inversedBy="image")
+     * @ORM\ManyToOne(targetEntity=Article::class, inversedBy="image", cascade={"persist"})
      */
     private $article;
 
 
-   
+
     public function getId(): ?int
     {
         return $this->id;
@@ -58,5 +58,21 @@ class Image
         return $this;
     }
 
-   
+    /** @see \Serializable::serialize() */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->image,
+        ));
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list(
+            $this->id,
+            $this->image,
+        ) = unserialize($serialized, array('allowed_classes' => false));
+    }
 }

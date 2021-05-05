@@ -16,19 +16,17 @@
     </div>
     <div>
         <label for="">Image</label>
-        {# <input type="file" name="image" accept="image/png, image/jpeg, image/jpg"> #}
-        {{ form_widget(form.image) }}
+        {{ form_widget(form.imageFile) }}
     </div>
      <div>
         <label for="">fichier</label>
-        {# <input type="file" name="fichier" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,
-        text/plain, application/pdf, image/*"> #}
-         {{ form_widget(form.fichier) }}
+       
+         {{ form_widget(form.fichierFile) }}
     </div>
     <div>
         <label for="">Video</label>
-        {# <input type="file" name="video" accept="video/mp4"> #}
-         {{ form_widget(form.video) }}
+        
+         {{ form_widget(form.videoFile) }}
     </div>
     <button class="btn" id="button_article">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

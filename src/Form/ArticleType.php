@@ -24,26 +24,35 @@ class ArticleType extends AbstractType
                 "class" => User::class,
                 "choice_label" => "email"
             ])
-            ->add('image', FileType::class, [
+            ->add('imageFile', FileType::class, [
+                "required" => false,
+                // "mapped"    => false,
                 "multiple" => true,
                 "data_class"=> null,
                 "attr" => [
-                    "accept" => "image/png, image/jpeg, image/jpg"
+                    "accept" => "image/png, image/jpeg, image/jpg",
+                    "multiple" => true,
                 ]
             ])
-            ->add('fichier', FileType::class, [
-                "multiple" => false,
+            ->add('fichierFile', FileType::class, [
+                "required" => false,
+                // "mapped"    => false,
+                "multiple" => true,
                 "data_class"=> null,
                 "attr" => [
                     "accept" => "application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint,
-                    text/plain, application/pdf, image/*"
+                    text/plain, application/pdf, image/*",
+                    "multiple" => false,
                 ]
             ])
-            ->add('video', FileType::class, [
+            ->add('videoFile', FileType::class, [
+                "required" => false,
                 "multiple" => true,
+                // "mapped"    => false,
                 "data_class"=> null,
                 "attr" => [
-                    "accept" => "video/mp4"
+                    "accept" => "video/mp4",
+                    "multiple" => true,
                 ]
             ])
         ;

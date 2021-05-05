@@ -38,9 +38,10 @@ class UploadFile
         public function upload(UploadedFile $uploadedFile)
         {
             // get the original filename url
-
+            
             $origin = $uploadedFile->getClientOriginalName();
 
+            //dd($origin);
             // safe filename 
 
             $origin = transliterator_transliterate("Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()", $origin);
@@ -58,7 +59,7 @@ class UploadFile
             $newFilename = $origin.'-'.uniqid().'.'.$extension;
 
             // specify targetDirectory
-
+            //dd($newFilename);
             if(in_array($extension, $ext_image)){
                // move 
                try {
@@ -82,5 +83,9 @@ class UploadFile
                 }
             }
 
+            return $newFilename;
+
         } 
+
+        
     }

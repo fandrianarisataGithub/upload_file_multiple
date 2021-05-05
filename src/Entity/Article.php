@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Serializable;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ArticleRepository;
 use Doctrine\Common\Collections\Collection;
@@ -10,7 +11,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * @ORM\Entity(repositoryClass=ArticleRepository::class)
  */
-class Article
+class Article implements Serializable
 {
     /**
      * @ORM\Id
@@ -49,11 +50,24 @@ class Article
      */
     private $video;
 
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     */
+    private $imagefile = [];
+
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     */
+    private $fichierFile = [];
+
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     */
+    private $videoFile = [];
+
+
     public function __construct()
     {
-        $this->videos = new ArrayCollection();
-        $this->images = new ArrayCollection();
-        $this->fichiers = new ArrayCollection();
         $this->image = new ArrayCollection();
         $this->fichier = new ArrayCollection();
         $this->video = new ArrayCollection();
@@ -188,6 +202,52 @@ class Article
         }
 
         return $this;
+    }
+
+    public function getImagefile(): ?array
+    {
+        return $this->imagefile;
+    }
+
+    public function setImagefile(?array $imagefile): self
+    {
+        $this->imagefile = $imagefile;
+
+        return $this;
+    }
+
+    public function getFichierFile(): ?array
+    {
+        return $this->fichierFile;
+    }
+
+    public function setFichierFile(?array $fichierFile): self
+    {
+        $this->fichierFile = $fichierFile;
+
+        return $this;
+    }
+
+    public function getVideoFile(): ?array
+    {
+        return $this->videoFile;
+    }
+
+    public function setVideoFile(?array $videoFile): self
+    {
+        $this->videoFile = $videoFile;
+
+        return $this;
+    }
+
+    public function serialize()
+    {
+        return serialize($this->getId());
+    }
+
+    public function unserialize($serialized)
+    {
+        $this->id = unserialize($serialized);
     }
 
 }
